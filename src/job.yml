@@ -1,15 +1,33 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
-code: model
+name: diabetes-train-job
+display_name: diabetes-train
+experiment_name: diabetes-classification
+description: Train a diabetes classification model using folder-based CSV data.
+
+code: src/model
+## code: model
+# command: >-
+#   python 
+#   --
+#   --
+
 command: >-
-  python 
-  --
-  --
+  python train.py
+  --data_path ${{inputs.training_data}}
+  --reg_rate ${{inputs.reg_rate}}
+# inputs:
+#   training_data: 
+#     type: uri_folder 
+#     path: 
+#   reg_rate: 0.01
+
 inputs:
-  training_data: 
-    type: uri_folder 
-    path: 
+  training_data:
+    type: uri_folder
+    path: azureml:diabetes-dev-folder:1
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: 
-experiment_name: 
-description: 
+compute: azureml:cpu-cluster
+# compute: 
+# experiment_name: 
+# description: 

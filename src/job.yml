@@ -4,12 +4,14 @@ display_name: diabetes-train
 experiment_name: diabetes-classification
 description: Train a diabetes classification model using folder-based CSV data.
 
-code: src/model
+# code: src/model
 ## code: model
 # command: >-
 #   python 
 #   --
 #   --
+
+code: ../experimentation
 
 command: >-
   python train.py
